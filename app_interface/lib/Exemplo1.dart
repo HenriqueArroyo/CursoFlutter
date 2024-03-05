@@ -25,25 +25,24 @@ class MyApp extends StatelessWidget {
         body: Column(
           children: [
             // Texto simples como primeiro filho da coluna
-            Text('Exercício 1'),
+            Text('Primeiro Filho'),
 
             // Container contendo um Row (linha horizontal) de dois Text widgets
             Container(
               child: Row(
                 children: [
                   Column(children: [
-                    Text('Nome:'),
-                    Text('Idade:'),
-                    Text('Endereço:'),
-                    Text('Telefone:'),
-                    Text('Email:')],),
+                    Text('Filho Aninhado 1.1'),
+                    Text('Filho Aninhado 1.2')],),
                     SizedBox(width: 50),
-                
+                  Column(children: [Text('Filho Aninhado 2')])
                 ],
               ),
               
             ),
 
+            // Texto simples como segundo filho da coluna
+            Text('Segundo Filho'),
           ],
         ),
       ),
