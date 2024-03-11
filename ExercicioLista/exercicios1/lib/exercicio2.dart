@@ -19,7 +19,10 @@ class MyApp2 extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 44, 43, 43),
         body: Column(
           children: [
-            Image.asset(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+ Image.asset(
               'assets/paulista.png',
               height: 50,
               width: 50,
@@ -30,6 +33,9 @@ class MyApp2 extends StatelessWidget {
               style: TextStyle(fontSize: 30, color: Colors.white),
             ),
             SizedBox(height: 20),
+              ],
+            ),
+           
             Container(
               color: const Color.fromARGB(255, 35, 35, 35),
               child: Row(
@@ -77,13 +83,12 @@ class MyApp2 extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Container(
-              height: 1,
-              color: Colors.white, 
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('MorumBis'),
-                  Text('17/03'),
-                  Text(data)
+                  Text('MorumBis',style: TextStyle(color: Colors.white,fontSize: 25),),
+                  Text('17 de Março, 18:00',style: TextStyle(color: Colors.white,fontSize: 25)),
+                  Text('Raphael Claus',style: TextStyle(color: Colors.white,fontSize: 25)),
                 ],
               ),
             ),
