@@ -22,20 +22,20 @@ class MyApp2 extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
- Image.asset(
-              'assets/paulista.png',
-              height: 50,
-              width: 50,
-            ),
-            SizedBox(height: 10), // Adiciona espaço entre a imagem e a linha
-            Text(
-              "Quartas de Final",
-              style: TextStyle(fontSize: 30, color: Colors.white),
-            ),
-            SizedBox(height: 20),
+                Image.asset(
+                  'assets/paulista.png',
+                  height: 50,
+                  width: 50,
+                ),
+                SizedBox(
+                    height: 10), // Adiciona espaço entre a imagem e a linha
+                Text(
+                  "Quartas de Final",
+                  style: TextStyle(fontSize: 30, color: Colors.white),
+                ),
+                SizedBox(height: 20),
               ],
             ),
-           
             Container(
               color: const Color.fromARGB(255, 35, 35, 35),
               child: Row(
@@ -50,8 +50,8 @@ class MyApp2 extends StatelessWidget {
                       ),
                       Image.asset(
                         'assets/spfc.png',
-                        width: 200,
-                        height: 200,
+                        width: 150,
+                        height: 150,
                       ),
                     ],
                   ),
@@ -73,8 +73,8 @@ class MyApp2 extends StatelessWidget {
                       ),
                       Image.asset(
                         'assets/novorizontino.png',
-                        width: 200,
-                        height: 200,
+                        width: 150,
+                        height: 150,
                       ),
                     ],
                   )
@@ -86,9 +86,42 @@ class MyApp2 extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('MorumBis',style: TextStyle(color: Colors.white,fontSize: 25),),
-                  Text('17 de Março, 18:00',style: TextStyle(color: Colors.white,fontSize: 25)),
-                  Text('Raphael Claus',style: TextStyle(color: Colors.white,fontSize: 25)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        'assets/stadium.png',
+                        height: 25,
+                        width: 25,
+                      ),
+                      Text(
+                        'MorumBis',
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/calendar.png',
+                        height: 25,
+                        width: 25,
+                      ),
+                      Text('17 de Março, 18:00',
+                          style: TextStyle(color: Colors.white, fontSize: 25)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Image.asset(
+                        'assets/apito.png',
+                        height: 25,
+                        width: 25,
+                      ),
+                      Text('Raphael Claus',
+                          style: TextStyle(color: Colors.white, fontSize: 25)),
+                    ],
+                  )
                 ],
               ),
             ),
