@@ -21,25 +21,73 @@ title: Text('Layout com Abas'),
 
 bottom: TabBar(
 tabs: [
-Tab(text: 'Aba 1'),
-Tab(text: 'Aba 2'),
-Tab(text: 'Aba 3'),
+Tab(text: 'Campo de Futebol'),
+Tab(text: 'Quadra de Basquete'),
+Tab(text: 'Quadra de Vôlei'),
 ],
 ),
 ),
 body: TabBarView(
-children: [
-// Conteúdo da Aba 1
-Center(
-child: Text('Conteúdo da Aba 1'),
-),
+   children: [
+            // Conteúdo da Aba 1
+            Center(
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'campoFutebol.jpg',
+                          height: 400,
+                          width: 600,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
 // Conteúdo da Aba 2
 Center(
-child: Text('Conteúdo da Aba 2'),
+  child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'quadraBasquete.png',
+                          height: 400,
+                          width: 600,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
 ),
 // Conteúdo da Aba 3
 Center(
-child: Text('Conteúdo da Aba 3'),
+  child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'quadraVolei.webp',
+                          height: 400,
+                          width: 600,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
 ),
 ],
 ),
