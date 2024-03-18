@@ -9,12 +9,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Exercicio 7',
-      home: StackExample(),
+      home: exemploStack(),
     );
   }
 }
 
-class StackExample extends StatelessWidget {
+class exemploStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

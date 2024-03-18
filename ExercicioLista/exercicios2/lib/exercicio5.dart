@@ -8,38 +8,81 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Aplicativo Responsivo',
+      title: 'Exercicio 5',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: layoutResponsivo(),
+      home: LayoutResponsivo(),
     );
   }
 }
 
-class layoutResponsivo extends StatelessWidget {
+class LayoutResponsivo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Obtém as informações sobre o tamanho da tela
-    final Size screenSize = MediaQuery.of(context).size;
+    final Size tamanhoTela = MediaQuery.of(context).size;
+    double larguraTela = tamanhoTela.width;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Aplicativo Responsivo'),
-      ),
-      body: Center(
-        child: Container(
-          width: screenSize.width * 0.8, // Utiliza 80% da largura da tela
-          height: screenSize.height * 0.6, // Utiliza 60% da altura da tela
-          color: Colors.blue,
-          child: Center(
-            child: Text(
-              'Conteúdo Responsivo',
-              style: TextStyle(fontSize: 24, color: Colors.white),
+    if (larguraTela < 600) {
+      // Layout para tela pequena
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Tela Pequena'),
+        ),
+        body: Center(
+          child: Container(
+            width: 200,
+            height: 200,
+            color: Colors.blue,
+            child: Center(
+              child: Text(
+                'Tela Pequena',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    } else if (larguraTela < 1200) {
+      // Layout para tela média
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Tela Média'),
+        ),
+        body: Center(
+          child: Container(
+            width: 300,
+            height: 300,
+            color: Colors.blue,
+            child: Center(
+              child: Text(
+                'Tela Média',
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      // Layout para tela grande
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Tela Grande'),
+        ),
+        body: Center(
+          child: Container(
+            width: 400,
+            height: 400,
+            color: Colors.blue,
+            child: Center(
+              child: Text(
+                'Tela Grande',
+                style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

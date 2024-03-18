@@ -70,19 +70,6 @@ class ButtonExample extends StatelessWidget {
               label: Text('OutlinedButton'),
             ),
             SizedBox(height: 20),
-            ElevatedButton.icon(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, 
-                backgroundColor: Colors.green, 
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-              icon: Icon(Icons.add), 
-              label: Text('ElevatedButton com Ícone'),
-            ),
           ],
         ),
       ),
