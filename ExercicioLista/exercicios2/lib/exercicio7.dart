@@ -34,15 +34,8 @@ class StackExample extends StatelessWidget {
             child: Container(
               width: 200,
               height: 200,
-              color: Colors.red,
               child: Center(
-                child: Text(
-                  'Widget Sobreposto',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
+                child: Image.asset('assets/kanye.jpg')
               ),
             ),
           ),
