@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/ExercicioLista/exercicios1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ExercicioLista/exercicios1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ExercicioLista/exercicios1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ExercicioLista/exercicios2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ExercicioLista/exercicios2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ExercicioLista/exercicios2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app_animais/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/app_animais/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app_animais/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app_interface/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/app_interface/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app_interface/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app_lista1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/app_lista1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app_lista1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/exemplo_persistencia_sp/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/exemplo_persistencia_sp/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/exemplo_persistencia_sp/build" />
+      <excludeFolder url="file://$MODULE_DIR$/exemplo_variaveis_operadores/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/exemplo_variaveis_operadores/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/exemplo_variaveis_operadores/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hello_world/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hello_world/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hello_world/build" />
+      <excludeFolder url="file://$MODULE_DIR$/jogo_adivinha_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/jogo_adivinha_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/jogo_adivinha_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/meu_primeiro_app_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/meu_primeiro_app_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/meu_primeiro_app_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/to_do_list/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/to_do_list/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/to_do_list/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

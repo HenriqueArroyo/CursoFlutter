@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final List<String> _itens = List.generate(20, (index) => 'Item ${index + 1}');
-@override
+  final List<String> _itens = List.generate(10, (index) => 'Item ${index + 1}');
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Exercício 2',
