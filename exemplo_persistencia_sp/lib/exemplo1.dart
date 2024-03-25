@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart'; // Importação da biblioteca Flutter Material
+import 'package:shared_preferences/shared_preferences.dart'; // Importação da biblioteca de preferências compartilhadas
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp()); // Execução do aplicativo Flutter
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +13,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue, // Tema do aplicativo
       ),
-      home: TaskListScreen() // Tela inicial do aplicativo
+      home: TaskListScreen(), // Tela inicial do aplicativo
     );
   }
 }
+
 class TaskListScreen extends StatefulWidget {
   @override
   _TaskListScreenState createState() => _TaskListScreenState();
