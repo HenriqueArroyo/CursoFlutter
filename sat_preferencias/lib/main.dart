@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+import 'settings_page.dart'; // Importando a página de configurações
 
 void main() {
   runApp(MyApp());
@@ -25,9 +28,28 @@ class RegistrationLoginPage extends StatefulWidget {
 class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   bool _isRegistering = false;
+
+  Database? _database;
+
+  @override
+  void initState() {
+    super.initState();
+    _initDatabase();
+  }
+
+  Future<void> _initDatabase() async {
+    _database = await openDatabase(
+      join(await getDatabasesPath(), 'user_database.db'),
+      onCreate: (db, version) {
+        return db.execute(
+          "CREATE TABLE users(id INTEGER PRIMARY KEY, email TEXT, password TEXT)",
+        );
+      },
+      version: 1,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,20 +115,20 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
     );
   }
 
-  void _register(BuildContext context) {
+  void _register(BuildContext context) async {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
     String confirmPassword = _confirmPasswordController.text.trim();
 
     if (password == confirmPassword) {
-      // Em um aplicativo real, você enviaria esses dados para um serviço de autenticação
-      // Aqui, vamos apenas imprimir para demonstração
-      print('Cadastro realizado com sucesso!');
-      print('Email: $email');
-      print('Senha: $password');
+      final newUser = await _database!.insert(
+        'users',
+        {'email': email, 'password': password},
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+      print('Novo usuário registrado com id: $newUser');
       Navigator.pop(context);
     } else {
-      // Senhas não coincidem
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -127,19 +149,25 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
     }
   }
 
-  void _login(BuildContext context) {
+  void _login(BuildContext context) async {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Em um aplicativo real, você enviaria esses dados para um serviço de autenticação
-    // Aqui, vamos apenas verificar valores estáticos para demonstração
-    if (email == 'user@example.com' && password == 'password') {
+    final List<Map<String, dynamic>> users = await _database!.query(
+      'users',
+      where: "email = ? AND password = ?",
+      whereArgs: [email, password],
+    );
+
+    if (users.isNotEmpty) {
       print('Login realizado com sucesso!');
       print('Email: $email');
       print('Senha: $password');
-      // Redirecionar para a tela principal ou outra tela desejada
+      Navigator.push( // Realizando o redirecionamento para a página de configurações
+        context,
+        MaterialPageRoute(builder: (context) => SettingsPage()),
+      );
     } else {
-      // Credenciais inválidas
       showDialog(
         context: context,
         builder: (BuildContext context) {
