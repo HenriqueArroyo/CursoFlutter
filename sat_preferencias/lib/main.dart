@@ -32,6 +32,7 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   bool _isRegistering = false;
 
   Database? _database;
+  bool _databaseInitialized = false;
 
   @override
   void initState() {
@@ -49,10 +50,22 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
       },
       version: 1,
     );
+    setState(() {
+      _databaseInitialized = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!_databaseInitialized) {
+      // Exibir uma tela de carregamento enquanto o banco de dados está sendo inicializado
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_isRegistering ? 'Cadastro' : 'Login'),
@@ -90,11 +103,7 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                if (_isRegistering) {
-                  _register(context);
-                } else {
-                  _login(context);
-                }
+                _isRegistering ? _register(context) : _login(context);
               },
               child: Text(_isRegistering ? 'Cadastrar' : 'Login'),
             ),
@@ -116,9 +125,35 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   }
 
   void _register(BuildContext context) async {
+    if (!_databaseInitialized) {
+      // Evitar que o usuário realize operações enquanto o banco de dados está sendo inicializado
+      return;
+    }
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
     String confirmPassword = _confirmPasswordController.text.trim();
+
+    // Verifica se o email segue o padrão 'user@example.com'
+    if (!_isValidEmail(email)) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Erro'),
+            content: Text('O e-mail não segue o padrão correto (user@example.com).'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
 
     if (password == confirmPassword) {
       final newUser = await _database!.insert(
@@ -150,6 +185,10 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   }
 
   void _login(BuildContext context) async {
+    if (!_databaseInitialized) {
+      // Evitar que o usuário realize operações enquanto o banco de dados está sendo inicializado
+      return;
+    }
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
@@ -165,7 +204,7 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
       print('Senha: $password');
       Navigator.push( // Realizando o redirecionamento para a página de configurações
         context,
-        MaterialPageRoute(builder: (context) => SettingsPage()),
+        MaterialPageRoute(builder: (context) => SettingsPage(userEmail: '',)),
       );
     } else {
       showDialog(
@@ -186,6 +225,12 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
         },
       );
     }
+  }
+
+  bool _isValidEmail(String email) {
+    // Verifica se o email segue o padrão 'user@example.com'
+    RegExp emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegExp.hasMatch(email);
   }
 
   void _toggleRegistering() {
