@@ -45,7 +45,7 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
       join(await getDatabasesPath(), 'user_database.db'),
       onCreate: (db, version) {
         return db.execute(
-          "CREATE TABLE users(id INTEGER PRIMARY KEY, email TEXT, password TEXT)",
+          "CREATE TABLE users(id SERIAL PRIMARY KEY, email TEXT, password TEXT)",
         );
       },
       version: 1,
