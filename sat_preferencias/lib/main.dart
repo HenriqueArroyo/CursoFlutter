@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import 'package:sat_preferencias/Model.dart';
+import 'Controller.dart'; // Importando o arquivo Controller.dart
 import 'settings_page.dart'; // Importando a página de configurações
 
 void main() {
@@ -31,7 +31,8 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   final TextEditingController _confirmPasswordController = TextEditingController();
   bool _isRegistering = false;
 
-  Database? _database;
+  late BancoDadosCrud _bancoDadosCrud; // Instância da classe BancoDadosCrud
+
   bool _databaseInitialized = false;
 
   @override
@@ -41,18 +42,9 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   }
 
   Future<void> _initDatabase() async {
-    _database = await openDatabase(
-      join(await getDatabasesPath(), 'user_database.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          "CREATE TABLE users(id SERIAL PRIMARY KEY, email TEXT, password TEXT)",
-        );
-      },
-      version: 1,
-    );
-    setState(() {
-      _databaseInitialized = true;
-    });
+    _bancoDadosCrud = BancoDadosCrud(); // Inicializando a instância do BancoDadosCrud
+    _databaseInitialized = true; // Definindo que o banco de dados está inicializado
+    setState(() {});
   }
 
   @override
@@ -125,10 +117,6 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   }
 
   void _register(BuildContext context) async {
-    if (!_databaseInitialized) {
-      // Evitar que o usuário realize operações enquanto o banco de dados está sendo inicializado
-      return;
-    }
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
     String confirmPassword = _confirmPasswordController.text.trim();
@@ -156,12 +144,9 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
     }
 
     if (password == confirmPassword) {
-      final newUser = await _database!.insert(
-        'users',
-        {'email': email, 'password': password},
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-      print('Novo usuário registrado com id: $newUser');
+      // Criando um novo objeto contaModel
+      contaModel newAccount = contaModel(email: email, password: password);
+      await _bancoDadosCrud.create(newAccount); // Chamando o método create do BancoDadosCrud
       Navigator.pop(context);
     } else {
       showDialog(
@@ -185,26 +170,24 @@ class _RegistrationLoginPageState extends State<RegistrationLoginPage> {
   }
 
   void _login(BuildContext context) async {
-    if (!_databaseInitialized) {
-      // Evitar que o usuário realize operações enquanto o banco de dados está sendo inicializado
-      return;
-    }
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    final List<Map<String, dynamic>> users = await _database!.query(
-      'users',
-      where: "email = ? AND password = ?",
-      whereArgs: [email, password],
+    // Obtendo a lista de contas do banco de dados
+    List<contaModel> accounts = await _bancoDadosCrud.getCONTAS();
+
+    // Procurando a conta correspondente ao e-mail e senha fornecidos
+    contaModel? matchedAccount = accounts.firstWhereOrNull(
+      (account) => account.email == email && account.password == password,
     );
 
-    if (users.isNotEmpty) {
+    if (matchedAccount != null) {
       print('Login realizado com sucesso!');
       print('Email: $email');
       print('Senha: $password');
       Navigator.push( // Realizando o redirecionamento para a página de configurações
         context,
-        MaterialPageRoute(builder: (context) => SettingsPage(userEmail: '',)),
+        MaterialPageRoute(builder: (context) => SettingsPage(userEmail: email)),
       );
     } else {
       showDialog(
