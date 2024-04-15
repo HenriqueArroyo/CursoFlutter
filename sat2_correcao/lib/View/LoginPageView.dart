@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sat2_correcao/View/CadastroPageView.dart';
+import 'package:sat2_correcao/View/HomePageView.dart';
 
 import '../Controller/BancoDados.dart';
 import '../Model/Usuario.dart';
@@ -107,7 +109,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PaginaConfiguracoes(email: user.email),
+              builder: (context) => PaginaHome(email: usuario.email),
             ),
           );
         } else {
