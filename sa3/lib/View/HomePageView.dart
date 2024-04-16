@@ -13,8 +13,8 @@ class PaginaHome extends StatefulWidget {
 
 class _PaginaHomeState extends State<PaginaHome> { 
   late SharedPreferences _prefs; 
-  Map<String, List<String>> _tarefasPorEmail = {}; // Mapa para armazenar tarefas por email
-  String get email => widget.email; // Get para acessar o email
+  Map<String, List<String>> _tarefasPorEmail = {}; // para armazenar tarefas por email
+  String get email => widget.email; 
 
   @override
   void initState() { 
@@ -29,7 +29,7 @@ class _PaginaHomeState extends State<PaginaHome> {
     });
   }
 
-  Map<String, List<String>>? _getTarefasFromPrefs() { // Método para obter as tarefas de acordo com o email das preferências compartilhadas
+  Map<String, List<String>>? _getTarefasFromPrefs() { // para obter as tarefas de acordo com o email das preferências compartilhadas
     String? tarefasString = _prefs.getString('${email}_tarefas'); 
     if (tarefasString != null) {
       Map<String, dynamic> tarefasMap = json.decode(tarefasString);
