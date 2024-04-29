@@ -1,18 +1,27 @@
 [
     {
-      "nome": "CPU",
-      "preco": 599.90,
-      "categoria": "Informática"
+      "nome": "Fonte 600W",
+      "preco": 500,
+      "categoria": "Periféricos",
+      "foto": "assets/img/img01.jpg"
     },
     {
-      "nome": "Camiseta Linux",
-      "preco": 50.90,
-      "categoria": "Vestúario"
+      "nome": "Mouse Mágico",
+      "preco": 700,
+      "categoria": "Acessórios",
+      "foto": "assets/img/img02.jpg"
     },
     {
-      "nome": "Mouse Pad",
-      "preco": 19.90,
-      "categoria": "Acessório"
+      "nome": "Casaco Tux",
+      "preco": 100,
+      "categoria": "Vestuário",
+      "foto": "assets/img/img03.jpg"
+    },
+    {
+      "nome": "Camisa do São Paulo",
+      "preco": 200,
+      "categoria": "Vestuário",
+      "foto": "assets/img/img04.jpg"
     }
   ]
   
