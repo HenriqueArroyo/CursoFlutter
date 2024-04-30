@@ -10,39 +10,42 @@ class ProdutosPage extends StatefulWidget {
 }
 
 class _ProdutosPageState extends State<ProdutosPage> {
-ProdutoController controller = ProdutoController();
-
+  ProdutoController controller = ProdutoController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      title: Text("Lista Produtos"),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(12),
-        child: Expanded(child:
-        FutureBuilder(future: controller.loadProdutos(), builder: (context,snapshot){
-          if (controller.produtos.isNotEmpty) {
-            return ListView.builder(
-            itemCount: controller.produtos.length,
-            itemBuilder: (context, index){
-              return ListTile(
-                title: Text(controller.produtos[index].nome),
-                subtitle: Text(controller.produtos[index].categoria),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProdutoInfoPage(produto: controller.produtos[index]))
-                ),
-              );
-            },
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        }) ,),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text("Lista Produtos"),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Expanded(
+            child: FutureBuilder(
+                future: controller.loadProdutos(),
+                builder: (context, snapshot) {
+                  if (controller.produtos.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: controller.produtos.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(controller.produtos[index].nome),
+                          subtitle: Text(controller.produtos[index].categoria),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProdutoInfoPage(
+                                    produto: controller.produtos[index]),
+                              )),
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
+          ),
+        ));
   }
 }
