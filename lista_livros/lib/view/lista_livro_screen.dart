@@ -1,15 +1,39 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
-class ListaLivroScreen extends StatefulWidget {
-  const ListaLivroScreen({super.key});
+import '../Controller/livros_controller.dart';
+
+class ListarLivrosScreen extends StatefulWidget {
+  const ListarLivrosScreen({super.key});
 
   @override
-  State<ListaLivroScreen> createState() => _ListaLivroScreenState();
+  State<ListarLivrosScreen> createState() => _ListarLivrosScreenState();
 }
 
-class _ListaLivroScreenState extends State<ListaLivroScreen> {
+class _ListarLivrosScreenState extends State<ListarLivrosScreen> {
+  final LivrosController _controller = LivrosController();
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Listar Livros'),
+        ),
+        body: Expanded(
+            child: Padding(
+                padding: EdgeInsets.all(12),
+                child: //lista livros
+                    ListView.builder(
+                  itemCount: _controller.listLivros.length,
+                  itemBuilder: (context, index) {
+                    ListTile(
+                      leading:
+                          Image.file(File(_controller.listLivros[index].capa)),
+                      title: Text(_controller.listLivros[index].titulo),
+                      subtitle: Text(_controller.listLivros[index].autor),
+                    );
+                  },
+                ))));
   }
 }

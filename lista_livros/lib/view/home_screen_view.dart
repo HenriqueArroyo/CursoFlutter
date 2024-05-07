@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -6,24 +8,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Livraria Senai'),
-      ),
-      body: Padding(padding: EdgeInsets.all(12), child: Center(
-        child: Column(
+      appBar: AppBar(title: Text("Livraria SENAI")),
+      body:Padding(
+        padding: EdgeInsets.all(16),
+        child: Center(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: onPressed, 
-               
-              child: Text("Listar Livros"),
-              ),
-              SizedBox(height: 16),
-              ElevatedButton(onPressed: onPressed, 
-              child: Text"Cadastrar Livro"),
+                onPressed: () {
+                 Navigator.pushNamed(context, '/listar');
+                },
+                child: Text("Listar Livros")),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/cadastrar'),
+              child: Text("Cadastrar Livro"),
+            ),
           ],
-        ),
-      ),),
+        )),
+      ),
     );
   }
 }
