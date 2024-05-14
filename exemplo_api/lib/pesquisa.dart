@@ -1,6 +1,5 @@
 // Importa o pacote de widgets do Flutter, que contém os widgets para construir interfaces de usuário.
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // Importa o serviço WeatherService, que é responsável por obter os dados de previsão do tempo da API.
 import 'service.dart';
@@ -14,13 +13,12 @@ class PesquisaPage extends StatefulWidget {
 
 // Classe que representa o estado do widget de previsão do tempo.
 class _PesquisaPageState extends State<PesquisaPage> {
-   List<String> _searchHistory = [];
   TextEditingController _cityController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
   // Instância do serviço WeatherService para obter os dados de previsão do tempo.
   final WeatherService _weatherService = WeatherService(
     apiKey:
-        '681126f28e7d6fa3a7cfe0da0671e599', // Chave de API para acesso à API de previsão do tempo.
+        'd69084504d6a5b7eb2c433dd2d308a1a', // Chave de API para acesso à API de previsão do tempo.
     baseUrl:
         'https://api.openweathermap.org/data/2.5', // URL base da API de previsão do tempo.
   );
@@ -39,19 +37,6 @@ class _PesquisaPageState extends State<PesquisaPage> {
         {'description':''}
       ]
     };
- _loadSearchHistory();
-  }
-
-   Future<void> _loadSearchHistory() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _searchHistory = prefs.getStringList('historico') ?? [];
-    });
-  }
-
-  Future<void> _saveSearchHistory() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList('historico', _searchHistory);
   }
 
   // Método assíncrono para buscar os dados de previsão do tempo para uma cidade específica.
@@ -62,8 +47,6 @@ class _PesquisaPageState extends State<PesquisaPage> {
       // Atualiza o estado do widget com os novos dados de previsão do tempo.
       setState(() {
         _weatherData = weatherData;
-          _searchHistory.add(city);
-        _saveSearchHistory(); // Save search history after adding a new city
       });
     } catch (e) {
       // Em caso de erro ao buscar os dados de previsão do tempo, exibe uma mensagem de erro no console.
@@ -106,11 +89,11 @@ class _PesquisaPageState extends State<PesquisaPage> {
                 _weatherData == null
                     ? Center(child: Text(""))
                     : Text(
-                          'Cidade: ${_weatherData['name']}'), // Exibe o nome da cidade.
+                          'City: ${_weatherData['name']}'), // Exibe o nome da cidade.
                       Text(
-                          'Temperatura: ${_weatherData['main']['temp']} °C'), // Exibe a temperatura em graus Celsius.
+                          'Temperature: ${_weatherData['main']['temp'] - 273 } °C'), // Exibe a temperatura em graus Celsius.
                       Text(
-                          'Descrição: ${_weatherData['weather'][0]['description']}'), // Exibe a descrição do clima.
+                          'Description: ${_weatherData['weather'][0]['description']}'), // Exibe a descrição do clima.
               ],
             )),
           ),
