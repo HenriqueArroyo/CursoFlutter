@@ -1,4 +1,4 @@
-import 'package:projeto_api_geo/service/weather_service';
+import 'package:projeto_api_geo/Service/weather_service.dart';
 
 import '../Model/weather_model.dart';
 
@@ -8,7 +8,9 @@ class WeatherController {
   List<Weather> get weatherList => _weatherList;
 
   final WeatherService _service = WeatherService();
+
   //métodos
+  //cidade
   Future<void> getWeather(String city) async{
     try {
        Weather weather = Weather.fromJson(await _service.getWeather(city));
@@ -17,6 +19,7 @@ class WeatherController {
       print(e);
     }
   }
+  //geolocation
   Future<void> getWeatherbyLocation(double lat, double lon) async{
     try {
        Weather weather = Weather.fromJson(
@@ -25,6 +28,15 @@ class WeatherController {
        _weatherList.add(weather);
     } catch (e) {
       print(e);
+    }
+  }
+  //findCity
+  Future<bool> findCity(String city) async {
+    try {
+      return await _service.findCity(city);
+    } catch (e) {
+      print(e);
+      return false;
     }
   }
 }

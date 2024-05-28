@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_api_geo/view/details_weather_screen.dart';
-import 'package:projeto_api_geo/view/favorites_screen.dart';
-import 'package:projeto_api_geo/view/search_screen.dart';
+import 'package:projeto_api_geo/View/details_weather_screen.dart';
 
-
-
+import 'View/favorites_screen.dart';
 import 'View/home_screen.dart';
-
+import 'View/search_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +21,6 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/favorites': (context) => FavoritesScreen(),
         '/search': (context) => SearchScreen(),
-        '/detais': (context) => WeatherDetailsScreen()
         
       }
     );
