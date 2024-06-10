@@ -11,6 +11,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final MusicService _musicService = MusicService();
 
+  Future<void> _musicList() async{
+    try {
+      await _musicService.fetchListMusic();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 });
             }else{
-              return 
+              return CircularProgressIndicator();
             }
-          }))))
+          })))
     );
   }
 }
