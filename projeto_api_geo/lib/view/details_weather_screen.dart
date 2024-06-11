@@ -33,23 +33,35 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
               ),
             ),
             const SizedBox(height: 20),
-          FutureBuilder(
-            future: _controller.getWeather(widget.cityName), 
-            builder: (context, snapshot){
-              if(_controller.weatherList.isEmpty){
-                return const Center(child: CircularProgressIndicator());
-              }else{
-                return Column(
-                  children: [
-                    Text(_controller.weatherList.last.name),
-                    Text(_controller.weatherList.last.description),
-                    Text((_controller.weatherList.last.temp-273).toStringAsFixed(2)),
-                    
-                  ],
-                );
-              }
+     FutureBuilder(
+  future: _controller.getWeather(widget.cityName),
+  builder: (context, snapshot) {
+    if (_controller.weatherList.isEmpty) {
+      return Center(child: CircularProgressIndicator());
+    } else {
+      double tempInCelsius = _controller.weatherList.last.temp - 273;
+      Widget weatherImage;
+      if (tempInCelsius < 11) {
+        weatherImage = Image.asset('assets/1.webp', height: 500, width: 500,);
+      } else if (tempInCelsius < 31) {
+        weatherImage = Image.asset('assets/2.jpg', height: 500, width: 500,);
+      } else {
+        weatherImage = Image.asset('assets/3.jpg', height: 500, width: 500,);
+      }
 
-            })
+      return Column(
+        children: [
+          Text(_controller.weatherList.last.name),
+          Text(_controller.weatherList.last.description),
+          Text(tempInCelsius.toStringAsFixed(2)),
+          SizedBox(height: 20),
+          weatherImage,
+        ],
+      );
+    }
+  },
+)
+
           ],
         ),
       ),
