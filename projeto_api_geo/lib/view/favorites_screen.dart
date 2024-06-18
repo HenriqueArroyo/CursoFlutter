@@ -36,7 +36,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: _favoriteCities.isEmpty
-            ? const Center(child: Text("No favorite cities."))
+            ? const Center(child: Text("Sem cidades favoritas."))
             : ListView.builder(
                 itemCount: _favoriteCities.length,
                 itemBuilder: (context, index) {

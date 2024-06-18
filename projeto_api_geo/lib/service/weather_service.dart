@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class WeatherService {
   //atributos
-  final String apiKey = "9a180e5bbd3fbe3fd2b5cd74cb5bfc6f";
+  final String apiKey = "681126f28e7d6fa3a7cfe0da0671e599";
   final String baseUrl = "https://api.openweathermap.org/data/2.5/weather";
 
   //metodos
